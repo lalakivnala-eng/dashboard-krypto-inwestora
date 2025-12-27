@@ -40,6 +40,7 @@ function renderTable(data) {
 }
 
 // Sortowanie
+// sortowanie tabeli odbywa sie po kliknienciu na "Nazwa"/"Cena (PLN)"/"Zmiana 24h"
 function sortData(property) {
   sortDirection = !sortDirection;
   cryptoData.sort((a, b) => {
