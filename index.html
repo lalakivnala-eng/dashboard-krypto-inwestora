@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Tracker - Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .card { background: #1e293b; padding: 20px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        h1, h2 { color: #38bdf8; }
+        
+        /* Kalkulator */
+        .calc-group { display: flex; gap: 10px; align-items: center; }
+        input { padding: 10px; border-radius: 6px; border: none; width: 150px; }
+        
+        /* Tabela */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { text-align: left; padding: 12px; background: #334155; cursor: pointer; border-bottom: 2px solid #38bdf8; }
+        th:hover { background: #475569; }
+        td { padding: 12px; border-bottom: 1px solid #334155; }
+        tr:hover { background: #2d3748; cursor: pointer; }
+        .up { color: #4ade80; }
+        .down { color: #f87171; }
+
+        /* Wykres */
+        .chart-container { position: relative; height: 300px; width: 100%; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Dashboard Krypto-Inwestora</h1>
+
+    <div class="card">
+        <h2>Kalkulator PLN ➔ BTC</h2>
+        <div class="calc-group">
+            <input type="number" id="plnInput" placeholder="Kwota w PLN" value="5000">
+            <span> PLN = </span>
+            <strong id="btcResult">0.00</strong> BTC
+        </div>
+    </div>
+
+    <div class="card" id="chartSection" style="display: none;">
+        <h2 id="chartTitle">Historia ceny (7 dni)</h2>
+        <div class="chart-container">
+            <canvas id="cryptoChart"></canvas>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Top 50 Kryptowalut (CoinGecko)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortData('name')">Nazwa</th>
+                    <th onclick="sortData('current_price')">Cena (PLN)</th>
+                    <th onclick="sortData('price_change_percentage_24h')">Zmiana 24h</th>
+                </tr>
+            </thead>
+            <tbody id="cryptoTableBody">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
